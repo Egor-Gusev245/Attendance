@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Журнал посещения</title>
+</head>
+<body>
+  <h1> Список студентов группы: {{ selected_group }} </h1>
+  <ul>
+    {% for student in students %}
+      <li>{{student}}</li>
+    {% empty %}
+      <li>Студентов в этой группе нет</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
