@@ -8,3 +8,33 @@
 /dataSources.local.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+# Секретные переменные и конфиги
+.env
+.env.*
+*.local
+# Настройки редакторов кода
+.vscode/
+.idea/
+.idea
+*.swp
+# Мусор операционных систем (особенно Windows)
+Thumbs.db
+Desktop.ini
+.DS_Store
+# Логи
+*.log
+
+# Виртуальное окружение (библиотеки)
+venv/
+.venv/
+env/
+
+# Кэш Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Базы данных (если локальные для тестов)
+*.postgresql
+*.db
+.sqlite3
