@@ -6,12 +6,24 @@
 </head>
 <body>
   <h1> Список студентов группы: {{ selected_group }} </h1>
-  <ul>
-    {% for student in students %}
-      <li>{{student}}</li>
-    {% empty %}
-      <li>Студентов в этой группе нет</li>
-    {% endfor %}
-  </ul>
+  <form method="post"  action="{% url 'save_attendance' %}">
+    {% csrf_token %}
+    <input type="hidden" name="group" value="{{ selected_group }}">
+    <label> Предмет: </label>
+    <input type="text" name="lesson" required>
+    <ul>
+      {% for student in students %}
+      <li>
+        <label>
+          <input type="checkbox" name="present_students" value="{{student.id}}">
+          {{student.name}}
+        </label>
+      </li>
+      {% empty %}
+        <li>Студентов в этой группе нет</li>
+      {% endfor %}
+    </ul>
+    <button type="submit">Сохранить</button>
+  </form>
 </body>
 </html>
