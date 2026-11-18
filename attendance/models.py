@@ -6,6 +6,7 @@ class Users(models.Model):
              ("t", "teacher"),]
     login = models.CharField(max_length = 10)
     password = models.CharField(max_length = 10)
+    group = models.CharField(max_length = 10)
 
     def __str__(self):
         return self.name
@@ -18,4 +19,4 @@ class Attendance(models.Model):
 
     def __str__(self):
         return f"{self.student.name} - {self.lesson} {str(self.datetime)}"
-    
+
