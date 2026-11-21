@@ -6,16 +6,36 @@
 </head>
 <body>
   <h1> Список студентов группы: {{ selected_group }} </h1>
+  <form method="get">
+    <label>Группа: </label>
+    <select name="group">
+      <option value="">Выберите группу</option>
+      {% for grp in all_groups %}
+        <option value="{{ grp }}" {% if grp == selected_group %}selected{% endif %}>
+          {{ grp }}
+        </option>
+      {% endfor %}
+    </select>
+      <label>Дата:</label>
+      <input type="date" name="date" value='{{selected_date}}'>
+      <label>Предмет: </label>
+      <input type="text" name="lesson" value="{{ selected_lesson }}" placeholder="музыка">
+      <button type="submit"> Показать</button>
+  </form>
   <form method="post"  action="{% url 'save_attendance' %}">
     {% csrf_token %}
     <input type="hidden" name="group" value="{{ selected_group }}">
+    <input type="hidden" name="present_date" value="{{ selected_date }}">
     <label> Предмет: </label>
     <input type="text" name="lesson" required>
     <ul>
       {% for student in students %}
       <li>
         <label>
-          <input type="checkbox" name="present_students" value="{{student.id}}">
+          <input type="checkbox" 
+          name="present_students" 
+          value="{{ student.id }}" 
+          {% if student.id in present_student_ids %}checked{% endif %}>
           {{student.name}}
         </label>
       </li>
